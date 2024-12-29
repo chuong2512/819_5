@@ -59,6 +59,11 @@ public class TweenUI : MonoBehaviour
 
     private void HandleTween(TweenStat stat)
     {
+        if (_rect == null)
+        {
+            return;
+        }
+
         switch (stat._animationType)
         {
             case AnimationTypes.Fade:
@@ -82,6 +87,11 @@ public class TweenUI : MonoBehaviour
 
     private void Move(TweenStat stat)
     {
+        if (_rect == null)
+        {
+            return;
+        }
+
         _rect.anchoredPosition = _defaultPos + stat._from;
 
         stat._tweenObj = LeanTween.move(_rect, _defaultPos + stat._to, stat._duration);
@@ -89,6 +99,11 @@ public class TweenUI : MonoBehaviour
 
     private void Scale(TweenStat stat)
     {
+        if (_rect == null)
+        {
+            return;
+        }
+
         _rect.localScale = stat._from;
 
         stat._tweenObj = LeanTween.scale(_rect, stat._to, stat._duration);
@@ -96,6 +111,11 @@ public class TweenUI : MonoBehaviour
 
     private void Fade(TweenStat stat)
     {
+        if (_rect == null)
+        {
+            return;
+        }
+
         _cg = _cg != null ? _cg : gameObject.AddComponent<CanvasGroup>();
 
         _cg.alpha = stat._from.x;
@@ -105,6 +125,11 @@ public class TweenUI : MonoBehaviour
 
     private void ResetTweenValue()
     {
+        if (_rect == null)
+        {
+            return;
+        }
+
         if (_cg) _cg.alpha = 1f;
         if (_rect) _rect.anchoredPosition = _defaultPos;
         if (_rect) _rect.localScale = Vector3.one;
